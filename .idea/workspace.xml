@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26290216-9c1a-405a-93df-917f9c3656da" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XywGEKhnTCwyALfNTVfkQA2e3I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/v7/src/main/java/fr/flo504/worldguardapi/v7" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15136719" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Developpement\Intellij Projects\WorldGuard API" />
+      <recent name="F:\Developpement\Intellij Projects\WorldGuard API\api" />
+      <recent name="F:\Developpement\Intellij Projects\WorldGuard API\v6\src\main\resources\t" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Developpement\Intellij Projects\WorldGuard API\v7\src\main\java\fr\flo504\worldguardapi\v7" />
+      <recent name="F:\Developpement\Intellij Projects\WorldGuard API\v6\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="fr.flo504.worldguardapi.v6.selection" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.flo504.worldguardapi.v6.worldedit" />
+      <recent name="fr.flo504.worldguardapi.core.exeptions" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install &quot;WorldGuard API&quot;" />
+      <command value="mvn javadoc" />
+      <command value="mvn clean install javadoc" />
+      <command value="mvn clean install javadoc;javadoc" />
+      <command value="mvn clean install javadoc:javadoc" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26290216-9c1a-405a-93df-917f9c3656da" name="Default Changelist" comment="" />
+      <created>1582031544835</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582031544835</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Project_Structure" timestamp="1584285270818">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1584285270818" />
+    <state x="690" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1583053648855">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583053648855" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583053398392">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583053398392" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1584280943839">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584280943839" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583010352363">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583010352363" />
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1583065701566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583065701566" />
+    <state width="1877" height="79" key="GridCell.Tab.0.bottom" timestamp="1584308758222">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="79" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584308758222" />
+    <state width="1877" height="79" key="GridCell.Tab.0.center" timestamp="1584308758222">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="79" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584308758222" />
+    <state width="1877" height="79" key="GridCell.Tab.0.left" timestamp="1584308758222">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="79" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584308758222" />
+    <state width="1877" height="79" key="GridCell.Tab.0.right" timestamp="1584308758222">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="79" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584308758222" />
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog" timestamp="1583065816947">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583065816947" />
+    <state width="254" height="198" key="RunAnythingAction_Filter_Popup" timestamp="1582034301534">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="254" height="198" key="RunAnythingAction_Filter_Popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582034301534" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1582033927753">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582033927753" />
+    <state x="681" y="261" width="540" height="524" key="StructurePopup" timestamp="1583010529299">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="681" y="261" width="540" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1583010529299" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1583066426830">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1583066426830" />
+    <state x="342" y="215" key="new project wizard" timestamp="1583337202862">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="215" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1583337202862" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1584287180938">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584287180938" />
+    <state x="623" y="225" width="1023" height="678" key="search.everywhere.popup" timestamp="1584287844251">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="1023" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584287844251" />
+  </component>
+</project>

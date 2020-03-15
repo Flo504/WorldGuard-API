@@ -1,0 +1,7 @@
+name: WorldGuardAPI
+author: Flo504
+version: 1.0.0
+main: fr.flo504.worldguardapi.api.WorldGuardApiPlugin
+softdepend:
+  - WorldEdit
+  - WorldGuard
