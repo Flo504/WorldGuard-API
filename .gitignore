@@ -24,6 +24,8 @@ hs_err_pid*
 
 #idea files
 .idea/*
+WorldGuard API.iml
 
 #target folders
 */target
+dependency-reduced-pom.xml
