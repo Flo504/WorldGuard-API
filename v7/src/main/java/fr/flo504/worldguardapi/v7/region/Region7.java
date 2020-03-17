@@ -10,10 +10,13 @@ import fr.flo504.worldguardapi.api.exeptions.RegionAlreadyExistException;
 import fr.flo504.worldguardapi.api.exeptions.RegionException;
 import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
 import fr.flo504.worldguardapi.api.region.Region;
+import fr.flo504.worldguardapi.api.region.flag.Flag;
+import fr.flo504.worldguardapi.api.region.flag.FlagRegistry;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.api.vector.Vector2D;
 import fr.flo504.worldguardapi.api.vector.Vector3D;
+import fr.flo504.worldguardapi.v7.region.flag.FlagRegistry7;
 import fr.flo504.worldguardapi.v7.vectors.VectorAdapter7;
 import org.bukkit.World;
 
@@ -26,15 +29,19 @@ public class Region7 implements Region {
     private final World world;
     private ProtectedRegion region;
 
-    public Region7(World world, String name, BlockVector3D maximumPoint, BlockVector3D minimumPoint) {
+    private final FlagRegistry7 flagRegistry;
+
+    public Region7(World world, String name, BlockVector3D maximumPoint, BlockVector3D minimumPoint, FlagRegistry7 flagRegistry) {
         if(RegionManagerUtils7.existRegion(world, name))
             throw new RegionAlreadyExistException("The region "+name+" in the world "+world.getName()+" already exist");
 
         this.world = world;
         region = new ProtectedCuboidRegion(name, VectorAdapter7.toWGBlockVector3D(maximumPoint), VectorAdapter7.toWGBlockVector3D(minimumPoint));
+
+        this.flagRegistry = flagRegistry;
     }
 
-    public Region7(World world, String name, List<BlockVector2D> points, int maxY, int minY) {
+    public Region7(World world, String name, List<BlockVector2D> points, int maxY, int minY, FlagRegistry7 flagRegistry) {
         if(RegionManagerUtils7.existRegion(world, name))
             throw new RegionAlreadyExistException("The region "+name+" in the world "+world.getName()+" already exist");
 
@@ -44,19 +51,24 @@ public class Region7 implements Region {
         final int maxiY = Math.max(maxY, minY);
         final List<BlockVector2> wgPoints = points.stream().map(VectorAdapter7::toWGBlockVector2D).collect(Collectors.toList());
         region = new ProtectedPolygonalRegion(name, wgPoints, miniY, maxiY);
+
+        this.flagRegistry = flagRegistry;
     }
 
-    public Region7(World world, String name) {
+    public Region7(World world, String name, FlagRegistry7 flagRegistry) {
         if(!RegionManagerUtils7.existRegion(world, name))
             throw new RegionNotFoundException("The region "+name+" in the world "+world.getName()+" does not exist");
 
         this.world = world;
         this.region = RegionManagerUtils7.getRegion(world, name);
+
+        this.flagRegistry = flagRegistry;
     }
 
-    private Region7(World world, ProtectedRegion region){
+    private Region7(World world, ProtectedRegion region, FlagRegistry7 flagRegistry){
         this.world = world;
         this.region = region;
+        this.flagRegistry = flagRegistry;
     }
 
     @Override
@@ -248,7 +260,7 @@ public class Region7 implements Region {
 
     @Override
     public Region getParent() {
-        return new Region7(world, region.getParent());
+        return new Region7(world, region.getParent(), flagRegistry);
     }
 
     @Override
@@ -299,5 +311,30 @@ public class Region7 implements Region {
     @Override
     public void setDirty(boolean dirty) {
         region.setDirty(dirty);
+    }
+
+    @SuppressWarnings({"unsafe", "unchecked"})
+    private com.sk89q.worldguard.protection.flags.Flag<Object> getWgFlag(Flag<?> flag){
+        return (com.sk89q.worldguard.protection.flags.Flag<Object>) flagRegistry.getWorldGuardFlag(flag);
+    }
+
+    @Override
+    public boolean hasFlag(Flag<?> flag) {
+        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
+        return region.getFlags().containsKey(wgFlag);
+    }
+
+    @Override
+    public <T> T getFlag(Flag<T> flag) {
+        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
+        if(!region.getFlags().containsKey(wgFlag))
+            return null;
+        return flag.getAdaptor().from(region.getFlag(wgFlag));
+    }
+
+    @Override
+    public <T> void setFlag(Flag<T> flag, T value) {
+        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
+        region.setFlag(wgFlag, flag.getAdaptor().to(value));
     }
 }

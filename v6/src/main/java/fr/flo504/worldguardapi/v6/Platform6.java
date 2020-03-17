@@ -17,6 +17,7 @@ import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.v6.region.Region6;
 import fr.flo504.worldguardapi.v6.region.RegionManagerUtils6;
+import fr.flo504.worldguardapi.v6.region.flag.FlagRegistry6;
 import fr.flo504.worldguardapi.v6.selection.OtherSelection6;
 import fr.flo504.worldguardapi.v6.vectors.VectorAdapter6;
 import fr.flo504.worldguardapi.v6.worldedit.WorldEditManager;
@@ -31,24 +32,26 @@ import java.util.stream.Collectors;
 public class Platform6 implements WGPlatform {
 
     private WorldEditManager worldEditManager;
+    private FlagRegistry6 flagRegistry;
 
     public Platform6() {
         worldEditManager = new WorldEditManager();
+        flagRegistry = new FlagRegistry6();
     }
 
     @Override
     public Region createRegion(World world, String name, BlockVector3D maximumPoint, BlockVector3D minimumPoint) {
-        return new Region6(world, name, maximumPoint, minimumPoint);
+        return new Region6(world, name, maximumPoint, minimumPoint, flagRegistry);
     }
 
     @Override
     public Region createRegion(World world, String name, List<BlockVector2D> points, int maxY, int minY) {
-        return new Region6(world, name, points, maxY, minY);
+        return new Region6(world, name, points, maxY, minY, flagRegistry);
     }
 
     @Override
     public Region getRegion(World world, String name) {
-        return new Region6(world, name);
+        return new Region6(world, name, flagRegistry);
     }
 
     @Override

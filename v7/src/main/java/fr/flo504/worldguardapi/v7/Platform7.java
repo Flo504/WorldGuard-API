@@ -19,6 +19,7 @@ import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.v7.region.Region7;
 import fr.flo504.worldguardapi.v7.region.RegionManagerUtils7;
+import fr.flo504.worldguardapi.v7.region.flag.FlagRegistry7;
 import fr.flo504.worldguardapi.v7.selection.OtherSelection7;
 import fr.flo504.worldguardapi.v7.vectors.VectorAdapter7;
 import org.bukkit.World;
@@ -30,19 +31,25 @@ import java.util.stream.Collectors;
 
 public class Platform7 implements WGPlatform {
 
+    private FlagRegistry7 flagRegistry;
+
+    public Platform7(){
+        flagRegistry = new FlagRegistry7();
+    }
+
     @Override
     public Region createRegion(World world, String name, BlockVector3D maximumPoint, BlockVector3D minimumPoint) {
-        return new Region7(world, name, maximumPoint, minimumPoint);
+        return new Region7(world, name, maximumPoint, minimumPoint, flagRegistry);
     }
 
     @Override
     public Region createRegion(World world, String name, List<BlockVector2D> points, int maxY, int minY) {
-        return new Region7(world, name, points, maxY, minY);
+        return new Region7(world, name, points, maxY, minY, flagRegistry);
     }
 
     @Override
     public Region getRegion(World world, String name) {
-        return new Region7(world, name);
+        return new Region7(world, name, flagRegistry);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fr.flo504.worldguardapi.api.region;
 
+import fr.flo504.worldguardapi.api.region.flag.Flag;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.api.vector.Vector2D;
@@ -87,6 +88,11 @@ public interface Region {
 
     void setDirty(boolean dirty);
 
+    boolean hasFlag(Flag<?> flag);
+
+    <T> T getFlag(Flag<T> flag);
+
+    <T> void setFlag(Flag<T> flag, T value);
     //TODO Flag
     
 
