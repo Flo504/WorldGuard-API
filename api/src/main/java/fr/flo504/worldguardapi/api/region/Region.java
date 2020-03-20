@@ -88,12 +88,10 @@ public interface Region {
 
     void setDirty(boolean dirty);
 
-    boolean hasFlag(Flag<?> flag);
+    boolean hasFlag(Flag<?, ?> flag);
 
-    <T> T getFlag(Flag<T> flag);
+    <F, T, U> T getFlag(Flag<U, T> flag);
 
-    <T> void setFlag(Flag<T> flag, T value);
-    //TODO Flag
-    
+    <F, T> void setFlag(Flag<?, T> flag, T value);
 
 }

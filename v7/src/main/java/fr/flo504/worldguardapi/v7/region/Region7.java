@@ -6,16 +6,17 @@ import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedPolygonalRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionType;
+import fr.flo504.worldguardapi.api.exeptions.FlagException;
 import fr.flo504.worldguardapi.api.exeptions.RegionAlreadyExistException;
 import fr.flo504.worldguardapi.api.exeptions.RegionException;
 import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
 import fr.flo504.worldguardapi.api.region.Region;
 import fr.flo504.worldguardapi.api.region.flag.Flag;
-import fr.flo504.worldguardapi.api.region.flag.FlagRegistry;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.api.vector.Vector2D;
 import fr.flo504.worldguardapi.api.vector.Vector3D;
+import fr.flo504.worldguardapi.v7.region.flag.Flag7;
 import fr.flo504.worldguardapi.v7.region.flag.FlagRegistry7;
 import fr.flo504.worldguardapi.v7.vectors.VectorAdapter7;
 import org.bukkit.World;
@@ -313,28 +314,30 @@ public class Region7 implements Region {
         region.setDirty(dirty);
     }
 
-    @SuppressWarnings({"unsafe", "unchecked"})
-    private com.sk89q.worldguard.protection.flags.Flag<Object> getWgFlag(Flag<?> flag){
-        return (com.sk89q.worldguard.protection.flags.Flag<Object>) flagRegistry.getWorldGuardFlag(flag);
+    private <F, T, U> Flag7<F, T> ensureFlag7(Flag<U, T> flag){
+        if(!(flag instanceof Flag7))
+            throw new FlagException("Wrong version for the flag '"+flag.getName()+"'");
+        return (Flag7<F, T>)flag;
     }
 
     @Override
-    public boolean hasFlag(Flag<?> flag) {
-        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
-        return region.getFlags().containsKey(wgFlag);
+    public boolean hasFlag(Flag<?, ?> flag) {
+        final Flag7<?, ?> flag7 = ensureFlag7(flag);
+        return region.getFlags().containsKey(flag7.getWgFlag());
     }
 
     @Override
-    public <T> T getFlag(Flag<T> flag) {
-        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
+    public <F, T, U> T getFlag(Flag<U, T> flag) {
+        final Flag7<F, T> flag7 = ensureFlag7(flag);
+        final com.sk89q.worldguard.protection.flags.Flag<F> wgFlag = flag7.getWgFlag();
         if(!region.getFlags().containsKey(wgFlag))
             return null;
-        return flag.getAdaptor().from(region.getFlag(wgFlag));
+        return flag7.getFlagAdaptor().from(region.getFlag(wgFlag));
     }
 
     @Override
-    public <T> void setFlag(Flag<T> flag, T value) {
-        final com.sk89q.worldguard.protection.flags.Flag<Object> wgFlag = getWgFlag(flag);
-        region.setFlag(wgFlag, flag.getAdaptor().to(value));
+    public <F, T> void setFlag(Flag<?, T> flag, T value) {
+        final Flag7<F, T> flag7 = ensureFlag7(flag);
+        region.setFlag(flag7.getWgFlag(), flag7.getFlagAdaptor().to(value));
     }
 }
