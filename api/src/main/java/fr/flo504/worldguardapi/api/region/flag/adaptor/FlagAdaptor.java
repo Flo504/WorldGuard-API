@@ -1,9 +1,9 @@
 package fr.flo504.worldguardapi.api.region.flag.adaptor;
 
-public interface FlagAdaptor<F, T> {
+public interface FlagAdaptor<T> {
 
-    T from(F object);
+    T from(Object object);
 
-    F to(T adapt);
+    Object to(T adapt);
 
 }

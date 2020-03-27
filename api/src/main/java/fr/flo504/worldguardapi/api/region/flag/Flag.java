@@ -2,7 +2,7 @@ package fr.flo504.worldguardapi.api.region.flag;
 
 import java.util.Objects;
 
-public abstract class Flag<F, T> {
+public final class Flag<T> {
 
     private final String name;
 
@@ -18,7 +18,7 @@ public abstract class Flag<F, T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Flag<?, ?> flag = (Flag<?, ?>) o;
+        Flag<?> flag = (Flag<?>) o;
         return Objects.equals(name, flag.name);
     }
 
@@ -29,9 +29,8 @@ public abstract class Flag<F, T> {
 
     @Override
     public String toString() {
-        return "AbstractFlag{" +
+        return "Flag{" +
                 "name='" + name + '\'' +
                 '}';
     }
-
 }

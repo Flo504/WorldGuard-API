@@ -11,17 +11,16 @@ import fr.flo504.worldguardapi.api.exeptions.RegionException;
 import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
 import fr.flo504.worldguardapi.api.region.Region;
 import fr.flo504.worldguardapi.api.region.flag.Flag;
+import fr.flo504.worldguardapi.api.region.flag.FlagSession;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.api.vector.Vector2D;
 import fr.flo504.worldguardapi.api.vector.Vector3D;
-import fr.flo504.worldguardapi.v6.region.flag.Flag6;
 import fr.flo504.worldguardapi.v6.region.flag.FlagRegistry6;
 import fr.flo504.worldguardapi.v6.vectors.VectorAdapter6;
 import org.bukkit.World;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Region6 implements Region {
@@ -314,30 +313,29 @@ public class Region6 implements Region {
         region.setDirty(dirty);
     }
 
-    private <F, T, U> Flag6<F, T> ensureFlag6(Flag<U, T> flag){
-        if(!(flag instanceof Flag6))
-            throw new FlagException("Wrong version for the flag '"+flag.getName()+"'");
-        return (Flag6<F, T>)flag;
+    @Override
+    public boolean hasFlag(Flag<?> flag) {
+        return region.getFlags().containsKey(flagRegistry.getFlagSession(flag).getWgFlag());
     }
 
+    @SuppressWarnings({"unchecked"})
     @Override
-    public boolean hasFlag(Flag<?, ?> flag) {
-        final Flag6<?, ?> flag6 = ensureFlag6(flag);
-        return region.getFlags().containsKey(flag6.getWgFlag());
+    public <T> T getFlag(Flag<T> flag) {
+        final FlagSession<T> flagSession = (FlagSession<T>) flagRegistry.getFlagSession(flag);
+        return flagSession.getAdaptor().from(region.getFlags().get(flagSession.getWgFlag()));
     }
 
+    @SuppressWarnings({"unchecked"})
     @Override
-    public <F, T, U> T getFlag(Flag<U, T> flag) {
-        final Flag6<F, T> flag6 = ensureFlag6(flag);
-        final com.sk89q.worldguard.protection.flags.Flag<F> wgFlag = flag6.getWgFlag();
-        if(!region.getFlags().containsKey(wgFlag))
-            return null;
-        return flag6.getFlagAdaptor().from(region.getFlag(wgFlag));
+    public <T> void setFlag(Flag<T> flag, T value) {
+        final FlagSession<T> flagSession = (FlagSession<T>) flagRegistry.getFlagSession(flag);
+        this.setDirty(true);
+        if (value == null) {
+            region.getFlags().remove(flagSession.getWgFlag());
+        } else {
+            region.getFlags().put((com.sk89q.worldguard.protection.flags.Flag<?>) flagSession.getWgFlag(), flagSession.getAdaptor().to(value));
+        }
+        region.setDirty(true);
     }
 
-    @Override
-    public <F, T> void setFlag(Flag<?, T> flag, T value) {
-        final Flag6<F, T> flag6 = ensureFlag6(flag);
-        region.setFlag(flag6.getWgFlag(), flag6.getFlagAdaptor().to(value));
-    }
 }

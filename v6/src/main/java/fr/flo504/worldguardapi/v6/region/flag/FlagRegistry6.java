@@ -10,12 +10,12 @@ public class FlagRegistry6 extends FlagRegistry {
         return true;
     }
 
-    private <F, T> Flag6<F, T> registerWorldGuardFlag(com.sk89q.worldguard.protection.flags.Flag<F> flag) {
+    private <F, T> Flag<T> registerWorldGuardFlag(com.sk89q.worldguard.protection.flags.Flag<F> flag) {
         return null;
     }
 
     @Override
-    public <T> Flag<?, T> registerCustomFlag(String name, Class<T> flagType) {
+    public <T> Flag<T> registerCustomFlag(String name, Class<T> flagType) {
         return null;
     }
 
