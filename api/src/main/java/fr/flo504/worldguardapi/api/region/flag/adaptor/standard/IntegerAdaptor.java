@@ -1,6 +1,5 @@
 package fr.flo504.worldguardapi.api.region.flag.adaptor.standard;
 
-import fr.flo504.worldguardapi.api.exeptions.FlagException;
 import fr.flo504.worldguardapi.api.region.flag.adaptor.FlagAdaptor;
 
 public class IntegerAdaptor implements FlagAdaptor<Integer> {

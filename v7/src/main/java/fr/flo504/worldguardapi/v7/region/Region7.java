@@ -13,6 +13,7 @@ import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
 import fr.flo504.worldguardapi.api.region.Region;
 import fr.flo504.worldguardapi.api.region.flag.Flag;
 import fr.flo504.worldguardapi.api.region.flag.FlagSession;
+import fr.flo504.worldguardapi.api.region.flag.MapReflect;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
 import fr.flo504.worldguardapi.api.vector.Vector2D;
@@ -316,26 +317,23 @@ public class Region7 implements Region {
 
     @Override
     public boolean hasFlag(Flag<?> flag) {
-        return region.getFlags().containsKey(flagRegistry.getFlagSession(flag).getWgFlag());
+        return MapReflect.contains(region.getFlags(), flagRegistry.getFlagSession(flag).getWgFlag());
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getFlag(Flag<T> flag) {
-        final FlagSession<T> flagSession = (FlagSession<T>) flagRegistry.getFlagSession(flag);
-        return flagSession.getAdaptor().from(region.getFlags().get(flagSession.getWgFlag()));
+        final FlagSession<T> flagSession = flagRegistry.getFlagSession(flag);
+        final Object obj = MapReflect.get(region.getFlags(), flagSession.getWgFlag());
+        return obj != null ? flagSession.getAdaptor().from(obj) : null;
     }
 
-    @SuppressWarnings({"unchecked"})
     @Override
     public <T> void setFlag(Flag<T> flag, T value) {
-        final FlagSession<T> flagSession = (FlagSession<T>) flagRegistry.getFlagSession(flag);
-        this.setDirty(true);
-        if (value == null) {
-            region.getFlags().remove(flagSession.getWgFlag());
-        } else {
+        final FlagSession<T> flagSession = flagRegistry.getFlagSession(flag);
+        if (value == null)
+            MapReflect.remove(region.getFlags(), flagSession.getWgFlag());
+        else
             region.getFlags().put((com.sk89q.worldguard.protection.flags.Flag<?>) flagSession.getWgFlag(), flagSession.getAdaptor().to(value));
-        }
         region.setDirty(true);
     }
 }

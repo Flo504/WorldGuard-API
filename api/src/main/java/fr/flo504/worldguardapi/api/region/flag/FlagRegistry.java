@@ -9,27 +9,31 @@ public abstract class FlagRegistry {
 
     private final List<FlagSession<?>> sessions = new ArrayList<>();
 
-    public FlagSession<?> getFlagSession(Flag<?> flag){
-        final Optional<FlagSession<?>> session = getSession(flag);
+    public <T> FlagSession<T> getFlagSession(Flag<T> flag){
+        final Optional<FlagSession<T>> session = getSession(flag);
         if(!session.isPresent())
             throw new FlagException("Attempting to access with a flag that is not register");
         return session.get();
     }
 
-    public Optional<FlagSession<?>> getSession(Flag<?> flag){
+    @SuppressWarnings("unchecked")
+    public <T> Optional<FlagSession<T>> getSession(Flag<T> flag){
         Objects.requireNonNull(flag, "The flag can not be null");
         return sessions
                 .stream()
                 .filter(session -> session.getFlag().equals(flag))
+                .map(flagSession -> (FlagSession<T>) flagSession)
                 .findFirst();
     }
 
-    public Flag<?> getFlag(String name){
-        final Optional<FlagSession<?>> session = sessions
+    @SuppressWarnings("unchecked")
+    public <T> Flag<T> getFlag(String name){
+        final Optional<FlagSession<T>> session = sessions
                 .stream()
                 .filter(flagSession -> flagSession.getFlag().getName().equals(name))
+                .map(flagSession -> (FlagSession<T>) flagSession)
                 .findFirst();
-        return session.<Flag<?>>map(FlagSession::getFlag).orElse(null);
+        return session.map(FlagSession::getFlag).orElse(null);
     }
 
     protected void registerFlag(FlagSession<?> session){
@@ -46,14 +50,6 @@ public abstract class FlagRegistry {
     }
 
     public boolean exist(Flag<?> flag) {
-        /*
-        return flags
-                .values()
-                .stream()
-                .map(FlagSession::getFlag)
-                .anyMatch((flag0) -> flag0.equals(flag));
-
-         */
         return sessions
                 .stream()
                 .anyMatch(session -> session.getFlag().equals(flag));
