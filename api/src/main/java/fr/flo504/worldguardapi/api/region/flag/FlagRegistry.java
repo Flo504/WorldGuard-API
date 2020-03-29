@@ -2,6 +2,7 @@ package fr.flo504.worldguardapi.api.region.flag;
 
 import fr.flo504.worldguardapi.api.exeptions.FlagException;
 import fr.flo504.worldguardapi.api.exeptions.FlagRegisterException;
+import fr.flo504.worldguardapi.api.region.flag.type.RegionGroup;
 
 import java.util.*;
 
@@ -30,7 +31,7 @@ public abstract class FlagRegistry {
     public <T> Flag<T> getFlag(String name){
         final Optional<FlagSession<T>> session = sessions
                 .stream()
-                .filter(flagSession -> flagSession.getFlag().getName().equals(name))
+                .filter(flagSession -> flagSession.getFlag().getName().equalsIgnoreCase(name))
                 .map(flagSession -> (FlagSession<T>) flagSession)
                 .findFirst();
         return session.map(FlagSession::getFlag).orElse(null);
@@ -57,6 +58,24 @@ public abstract class FlagRegistry {
 
     public abstract boolean isValidName(String name);
 
-    public abstract <T> Flag<T> registerCustomFlag(String name, Class<T> flagType);
+    public <T> Flag<T> registerCustomFlag(String name, Class<T> flagType){
+        return registerCustomFlag(name, flagType, RegionGroup.ALL, null);
+    }
+
+    public <T> Flag<T> registerCustomFlag(String name, Class<T> flagType, T defaultValue){
+        return registerCustomFlag(name, flagType, RegionGroup.ALL, defaultValue);
+    }
+
+    public <T> Flag<T> registerCustomFlag(String name, Class<T> flagType, RegionGroup regionGroup){
+        return registerCustomFlag(name, flagType, regionGroup, null);
+    }
+
+    public abstract <T> Flag<T> registerCustomFlag(String name, Class<T> flagType, RegionGroup regionGroup, T defaultValue);
+
+    public <T> Flag<Set<T>> registerCustomSetFlag(String name, Flag<T> flagType){
+        return registerCustomSetFlag(name, flagType, RegionGroup.ALL);
+    }
+
+    public abstract <T> Flag<Set<T>> registerCustomSetFlag(String name, Flag<T> flagType, RegionGroup regionGroup);
 
 }

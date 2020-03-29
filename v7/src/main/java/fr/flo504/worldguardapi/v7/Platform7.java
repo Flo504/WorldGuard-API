@@ -149,4 +149,8 @@ public class Platform7 implements WGPlatform {
         WorldEdit.getInstance().getSessionManager().get(BukkitAdapter.adapt(player)).setRegionSelector(world, selector);
     }
 
+    @Override
+    public FlagRegistry7 getFlagRegistry() {
+        return flagRegistry;
+    }
 }

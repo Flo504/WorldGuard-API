@@ -187,4 +187,8 @@ public class Platform6 implements WGPlatform {
 
     }
 
+    @Override
+    public FlagRegistry6 getFlagRegistry() {
+        return flagRegistry;
+    }
 }

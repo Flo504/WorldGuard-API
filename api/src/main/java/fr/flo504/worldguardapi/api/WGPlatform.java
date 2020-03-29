@@ -3,6 +3,7 @@ package fr.flo504.worldguardapi.api;
 import fr.flo504.worldguardapi.api.exeptions.RegionAlreadyExistException;
 import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
 import fr.flo504.worldguardapi.api.region.Region;
+import fr.flo504.worldguardapi.api.region.flag.FlagRegistry;
 import fr.flo504.worldguardapi.api.selection.Selection;
 import fr.flo504.worldguardapi.api.vector.BlockVector2D;
 import fr.flo504.worldguardapi.api.vector.BlockVector3D;
@@ -68,5 +69,7 @@ public interface WGPlatform {
     Selection getSelection(Player player, World world);
 
     void applySelection(Player player, Selection selection);
+
+    FlagRegistry getFlagRegistry();
 
 }
