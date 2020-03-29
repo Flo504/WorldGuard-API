@@ -5,10 +5,18 @@ import fr.flo504.worldguardapi.api.exeptions.FlagRegisterException;
 import fr.flo504.worldguardapi.api.region.flag.type.RegionGroup;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class FlagRegistry {
 
     private final List<FlagSession<?>> sessions = new ArrayList<>();
+
+    public List<Flag<?>> getFlags(){
+        return sessions
+                .stream()
+                .map(FlagSession::getFlag)
+                .collect(Collectors.toList());
+    }
 
     public <T> FlagSession<T> getFlagSession(Flag<T> flag){
         final Optional<FlagSession<T>> session = getSession(flag);
