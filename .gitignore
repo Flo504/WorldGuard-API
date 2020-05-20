@@ -24,3 +24,6 @@ hs_err_pid*
 
 # Target folders
 target/
+
+# Maven shade dependencies optimisation
+dependency-reduced-pom.xml
