@@ -1,4 +1,4 @@
-package fr.flo504.worldguardapi.api;
+package fr.flo504.worldguardapi;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
