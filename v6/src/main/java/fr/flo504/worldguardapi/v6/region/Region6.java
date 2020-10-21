@@ -1,12 +1,10 @@
 package fr.flo504.worldguardapi.v6.region;
 
-import com.google.common.base.Preconditions;
 import com.sk89q.worldguard.protection.managers.RemovalStrategy;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedPolygonalRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionType;
-import fr.flo504.worldguardapi.api.exeptions.FlagException;
 import fr.flo504.worldguardapi.api.exeptions.RegionAlreadyExistException;
 import fr.flo504.worldguardapi.api.exeptions.RegionException;
 import fr.flo504.worldguardapi.api.exeptions.RegionNotFoundException;
@@ -22,9 +20,8 @@ import fr.flo504.worldguardapi.v6.region.flag.FlagRegistry6;
 import fr.flo504.worldguardapi.v6.vectors.VectorAdapter6;
 import org.bukkit.World;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Region6 implements Region {
@@ -41,7 +38,7 @@ public class Region6 implements Region {
         this.world = world;
         region = new ProtectedCuboidRegion(name, VectorAdapter6.toWGBlockVector3D(maximumPoint), VectorAdapter6.toWGBlockVector3D(minimumPoint));
 
-        this.flagRegistry = new FlagRegistry6();
+        this.flagRegistry = flagRegistry;
     }
 
     public Region6(World world, String name, List<BlockVector2D> points, int maxY, int minY, FlagRegistry6 flagRegistry) {
@@ -55,7 +52,7 @@ public class Region6 implements Region {
         final List<com.sk89q.worldedit.BlockVector2D> wgPoints = points.stream().map(VectorAdapter6::toWGBlockVector2D).collect(Collectors.toList());
         region = new ProtectedPolygonalRegion(name, wgPoints, miniY, maxiY);
 
-        this.flagRegistry = new FlagRegistry6();
+        this.flagRegistry = flagRegistry;
     }
 
     public Region6(World world, String name, FlagRegistry6 flagRegistry) {
@@ -65,14 +62,14 @@ public class Region6 implements Region {
         this.world = world;
         this.region = RegionManagerUtils6.getRegion(world, name);
 
-        this.flagRegistry = new FlagRegistry6();
+        this.flagRegistry = flagRegistry;
     }
 
     private Region6(World world, ProtectedRegion region, FlagRegistry6 flagRegistry){
         this.world = world;
         this.region = region;
 
-        this.flagRegistry = new FlagRegistry6();
+        this.flagRegistry = flagRegistry;
     }
 
     @Override

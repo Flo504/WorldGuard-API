@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 public class Platform7 implements WGPlatform {
 
-    private FlagRegistry7 flagRegistry;
+    private final FlagRegistry7 flagRegistry;
 
     public Platform7(){
         flagRegistry = new FlagRegistry7();

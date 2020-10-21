@@ -31,8 +31,8 @@ import java.util.stream.Collectors;
 
 public class Platform6 implements WGPlatform {
 
-    private WorldEditManager worldEditManager;
-    private FlagRegistry6 flagRegistry;
+    private final WorldEditManager worldEditManager;
+    private final FlagRegistry6 flagRegistry;
 
     public Platform6() {
         worldEditManager = new WorldEditManager();

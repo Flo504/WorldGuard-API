@@ -1,12 +1,10 @@
 package fr.flo504.worldguardapi.v6.worldedit;
 
-import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import fr.flo504.worldguardapi.api.exeptions.WorldGuardAPIException;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
@@ -31,7 +29,12 @@ public class WorldEditManager {
     }
 
     public BukkitWorld getWorld(World world){
-        return worlds.getOrDefault(world, new BukkitWorld(world));
+        BukkitWorld bukkitWorld = worlds.get(world);
+        if(bukkitWorld == null){
+            bukkitWorld = new BukkitWorld(world);
+            worlds.put(world, bukkitWorld);
+        }
+        return bukkitWorld;
     }
 
     public WorldEditPlugin getWorldEditPlugin() {

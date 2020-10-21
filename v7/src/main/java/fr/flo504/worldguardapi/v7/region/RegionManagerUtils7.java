@@ -109,12 +109,12 @@ public class RegionManagerUtils7 {
         }
 
         @Override
-        public <B extends BlockStateHolder<B>> boolean setBlock(BlockVector3 blockVector3, B b, boolean b1) throws WorldEditException {
+        public <B extends BlockStateHolder<B>> boolean setBlock(BlockVector3 blockVector3, B b, boolean b1) {
             return false;
         }
 
         @Override
-        public boolean notifyAndLightBlock(BlockVector3 blockVector3, BlockState blockState) throws WorldEditException {
+        public boolean notifyAndLightBlock(BlockVector3 blockVector3, BlockState blockState) {
             return false;
         }
 
@@ -129,19 +129,13 @@ public class RegionManagerUtils7 {
         }
 
         @Override
-        public void dropItem(Vector3 vector3, BaseItemStack baseItemStack, int i) {
-
-        }
+        public void dropItem(Vector3 vector3, BaseItemStack baseItemStack, int i) {}
 
         @Override
-        public void dropItem(Vector3 vector3, BaseItemStack baseItemStack) {
-
-        }
+        public void dropItem(Vector3 vector3, BaseItemStack baseItemStack) {}
 
         @Override
-        public void simulateBlockMine(BlockVector3 blockVector3) {
-
-        }
+        public void simulateBlockMine(BlockVector3 blockVector3) {}
 
         @Override
         public boolean regenerate(Region region, EditSession editSession) {
@@ -149,24 +143,18 @@ public class RegionManagerUtils7 {
         }
 
         @Override
-        public boolean generateTree(TreeGenerator.TreeType treeType, EditSession editSession, BlockVector3 blockVector3) throws MaxChangedBlocksException {
+        public boolean generateTree(TreeGenerator.TreeType treeType, EditSession editSession, BlockVector3 blockVector3) {
             return false;
         }
 
         @Override
-        public void checkLoadedChunk(BlockVector3 blockVector3) {
-
-        }
+        public void checkLoadedChunk(BlockVector3 blockVector3) {}
 
         @Override
-        public void fixAfterFastMode(Iterable<BlockVector2> iterable) {
-
-        }
+        public void fixAfterFastMode(Iterable<BlockVector2> iterable) {}
 
         @Override
-        public void fixLighting(Iterable<BlockVector2> iterable) {
-
-        }
+        public void fixLighting(Iterable<BlockVector2> iterable) {}
 
         @Override
         public boolean playEffect(Vector3 vector3, int i, int i1) {
@@ -189,14 +177,10 @@ public class RegionManagerUtils7 {
         }
 
         @Override
-        public void setWeather(WeatherType weatherType) {
-
-        }
+        public void setWeather(WeatherType weatherType) {}
 
         @Override
-        public void setWeather(WeatherType weatherType, long l) {
-
-        }
+        public void setWeather(WeatherType weatherType, long l) {}
 
         @Override
         public BlockVector3 getSpawnPosition() {
